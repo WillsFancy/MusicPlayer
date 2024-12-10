@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.music-player {
+    width: 100%;
+    max-width: 375px;
+    height: 667px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    opacity: 0.5;
+    transition: background-image 0.5s ease;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    color: white;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+    border-radius: 30px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#back-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.playlist-info {
+    margin-left: 20px;
+}
+
+.playlist-info h2 {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.playlist-info p {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.album-art {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.song-info h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.song-info p {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+#progress {
+    width: 0;
+    height: 100%;
+    background-color: #ffd700;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#play-pause-button {
+    width: 70px;
+    height: 70px;
+    background-color: #ffd700;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#play-pause-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+#play-pause-button svg {
+    color: black;
+}
+
+.volume-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#volume-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#volume-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#volume-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+.volume-slider-container {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 10px;
+    border-radius: 15px;
+    display: none;
+}
+
+.volume-slider-container.active {
+    display: block;
+}
+
+#volume-slider {
+    
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+    transform: rotate(-90deg);
+    margin: 20px 0;
+}
+
+#volume-slider:hover {
+    opacity: 1;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #ffd700;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #ffd700;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
