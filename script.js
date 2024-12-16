@@ -10,6 +10,8 @@ const songTitle = document.getElementById('song-title');
 const songArtist = document.getElementById('song-artist');
 const coverArt = document.getElementById('cover-art');
 const background = document.querySelector('.background');
+const currentTimeDisplay = document.getElementById('current-time');
+const totalTimeDisplay = document.getElementById('total-time');
 
 const playlist = [
     {
@@ -41,6 +43,8 @@ function loadTrack(trackIndex) {
     songArtist.textContent = track.artist;
     coverArt.src = track.cover;
     background.style.backgroundImage = `url(${track.cover})`;
+    currentTimeDisplay.textContent = '0:00';
+    totalTimeDisplay.textContent = '0:00';
 }
 
 function playPause() {
@@ -65,18 +69,37 @@ function prevTrack() {
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
     loadTrack(currentTrack);
     audioPlayer.play();
+    
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+function updateProgress() {
+    const currentTime = audioPlayer.currentTime;
+    const duration = audioPlayer.duration;
+    progressSlider.value = (currentTime / duration) * 100;
+    currentTimeDisplay.textContent = formatTime(currentTime);
+    totalTimeDisplay.textContent = formatTime(duration);
+}
+
+function setProgress() {
+    const time = (progressSlider.value / 100) * audioPlayer.duration;
+    audioPlayer.currentTime = time;
 }
 
 playPauseButton.addEventListener('click', playPause);
 nextButton.addEventListener('click', nextTrack);
 prevButton.addEventListener('click', prevTrack);
 
-audioPlayer.addEventListener('timeupdate', () => {
-    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progress.style.width = `${progressPercent}%`;
-});
-
+audioPlayer.addEventListener('timeupdate', updateProgress);
+audioPlayer.addEventListener('loadedmetadata', updateProgress);
 audioPlayer.addEventListener('ended', nextTrack);
+
+progressSlider.addEventListener('input', setProgress);
 
 volumeButton.addEventListener('click', () => {
     volumeSliderContainer.classList.toggle('active');
