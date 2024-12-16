@@ -1,3 +1,12 @@
+
+  @media (max-width: 768px) {
+    .player-container {
+      width: 95%;
+      margin: 20% auto;
+      padding: 15px;
+    }
+  }
+  
 * {
     margin: 0;
     padding: 0;
@@ -92,7 +101,7 @@ header {
 
 .song-info {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .song-info h1 {
@@ -105,50 +114,43 @@ header {
     opacity: 0.8;
 }
 
-.time-info {
+.progress-container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    font-size: 12px;
-    opacity: 0.8;
-    margin-bottom: 10px;
-}
-
-.progress-bar {
-    width: 100%;
     margin-bottom: 20px;
 }
 
-#progress-slider {
+.progress-bar {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
+.progress-bar input[type="range"] {
     width: 100%;
-    background: rgba(255, 255, 255, 0.3);
-    outline: none;
-    opacity: 0.7;
-    transition: opacity .2s;
-    border-radius: 3px;
-    height: 6px;
-}
-
-#progress-slider:hover {
-    opacity: 1;
-}
-
-#progress-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    background: #ffd700;
-    cursor: pointer;
-    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    height: 6px;
+    border-radius: 3px;
+    outline: none;
 }
 
-#progress-slider::-moz-range-thumb {
+.progress-bar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
     width: 15px;
     height: 15px;
     background: #ffd700;
-    cursor: pointer;
     border-radius: 50%;
+    cursor: pointer;
 }
+
+#current-time,
+#duration {
+    font-size: 14px;
+    color: white;
+    opacity: 0.8;
+}
+
 
 .controls {
     display: flex;
@@ -233,6 +235,7 @@ header {
 }
 
 #volume-slider {
+    
     width: 100px;
     height: 4px;
     background: rgba(255, 255, 255, 0.3);
